@@ -65,28 +65,20 @@ public class Example6Activity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<String> cities) {
-                        handleSearchResults(cities);
+                        showSearchResults(cities);
                     }
                 });
     }
 
-    private void handleSearchResults(List<String> cities) {
-        if (cities.isEmpty()) {
-            showNoSearchResults();
-        } else {
-            showSearchResults(cities);
-        }
-    }
-
-    private void showNoSearchResults() {
-        mNoResultsIndicator.setVisibility(View.VISIBLE);
-        mSearchResults.setVisibility(View.GONE);
-    }
-
     private void showSearchResults(List<String> cities) {
-        mNoResultsIndicator.setVisibility(View.GONE);
-        mSearchResults.setVisibility(View.VISIBLE);
-        mSearchResultsAdapter.setStrings(cities);
+        if (cities.isEmpty()) {
+            mNoResultsIndicator.setVisibility(View.VISIBLE);
+            mSearchResults.setVisibility(View.GONE);
+        } else {
+            mNoResultsIndicator.setVisibility(View.GONE);
+            mSearchResults.setVisibility(View.VISIBLE);
+            mSearchResultsAdapter.setStrings(cities);
+        }
     }
 
     private void listenToSearchInput() {
